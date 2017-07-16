@@ -1,0 +1,16 @@
+{
+  "name": "02-implement-utilities",
+  "version": "1.0.0",
+  "description": "A lot of utility functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "Austin Story",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "require-directory": "^2.1.1"
+  }
+}

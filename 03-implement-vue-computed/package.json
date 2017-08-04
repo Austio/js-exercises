@@ -1,0 +1,27 @@
+{
+  "name": "02-implement-utilities",
+  "version": "1.0.0",
+  "description": "A lot of utility functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "Austin Story",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-preset-es2015": "^6.24.1",
+    "jest": "^20.0.4",
+    "regenerator-runtime": "^0.10.5"
+  },
+  "jest": {
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "testFileExtensions": [
+      "js"
+    ]
+  }
+}

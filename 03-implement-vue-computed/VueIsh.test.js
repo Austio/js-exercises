@@ -25,5 +25,11 @@ describe('VueIsh', () => {
       expect(vm.foo).toBe('bar');
       expect(vm.baz).toBe(1);
     })
+
+    it('can set values', () => {
+      vm.foo = 'asdf';
+
+      expect(vm.foo).toBe('asdf');
+    })
   });
 })

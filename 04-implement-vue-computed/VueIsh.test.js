@@ -57,5 +57,25 @@ describe('VueIsh', () => {
       expect(vm.foo).toBe(2);
     });
 
+    it('recomputes values when things change', () => {
+      vm = new VueIsh({
+        data: {
+          speed: 50,
+        },
+        computed: {
+          speedText() {
+             if (this.speed < 100) {
+               return 'slow';
+             }
+
+             return 'fast';
+          },
+        },
+      });
+
+      expect(vm.speedText).toBe('slow');
+      vm.speed = 101;
+      expect(vm.speedText).toBe('fast');
+    })
   })
 })

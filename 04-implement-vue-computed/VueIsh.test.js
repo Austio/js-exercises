@@ -39,10 +39,23 @@ describe('VueIsh', () => {
         computed: {
           foo() { return 1 },
         },
-      })
+      });
 
       expect(vm.foo).toBe(1);
-    })
+    });
+
+    it('computes based on values in data', () => {
+      vm = new VueIsh({
+        data: {
+          bar: 1,
+        },
+        computed: {
+          foo() { return 1 + this.bar },
+        },
+      });
+
+      expect(vm.foo).toBe(2);
+    });
 
   })
 })

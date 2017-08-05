@@ -1,4 +1,4 @@
-function defineProp(that, key, v) {
+function defineReactive(that, key, v) {
   var val = v;
 
   Object.defineProperty(that, key, {
@@ -12,15 +12,32 @@ function defineProp(that, key, v) {
   })
 }
 
+function defineComputed(that, key, getFn) {
+  const boundGetFn = getFn.bind(that);
+
+  Object.defineProperty(that, key, {
+    enumerable: true,
+    get() {
+      return boundGetFn()
+    },
+    set() {
+      // Can't set a computed function
+      return;
+    }
+  })
+
+}
+
 function VueIsh(options = {}) {
+  this.root = true;
+
   for(let d in options.data) {
-    defineProp(this, d, options.data[d])
+    defineReactive(this, d, options.data[d])
   }
 
   for(let c in options.computed) {
-    defineProp(this, c, options.computed[c]())
+    defineComputed(this, c, options.computed[c])
   }
-  this.root = true;
 }
 
 export default VueIsh;

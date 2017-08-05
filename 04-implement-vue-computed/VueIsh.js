@@ -16,6 +16,10 @@ function VueIsh(options = {}) {
   for(let d in options.data) {
     defineProp(this, d, options.data[d])
   }
+
+  for(let c in options.computed) {
+    defineProp(this, c, options.computed[c]())
+  }
   this.root = true;
 }
 

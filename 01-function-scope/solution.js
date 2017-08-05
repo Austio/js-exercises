@@ -7,8 +7,9 @@ matrix = [
 // Wrap in IIFE to keep var in scope
 for (var i = 0; i < matrix.length; i += 1) {
   var row = matrix[i];
+  console.log('i is outter loop', i);
   ( function foo() {
-    for (var i = 0; i < row.length; i += 1) {
+    for (i = 0; i < row.length; i += 1) {
       console.info(row[i]);
     }
   })()

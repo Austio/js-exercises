@@ -32,4 +32,17 @@ describe('VueIsh', () => {
       expect(vm.foo).toBe('asdf');
     })
   });
+
+  describe('computed properties', () => {
+    it('set a property on the vm', () => {
+      vm = new VueIsh({
+        computed: {
+          foo() { return 1 },
+        },
+      })
+
+      expect(vm.foo).toBe(1);
+    })
+
+  })
 })

@@ -1,27 +1,45 @@
+const Dep = {
+  target: null
+};
+
 function defineReactive(that, key, v) {
   var val = v;
+  var deps = [];
 
   Object.defineProperty(that, key, {
     enumerable: true,
     get() {
+      if (Dep.target) {
+       deps.push(Dep.target);
+      }
+
       return val;
     },
     set(newVal) {
       val = newVal;
+
+      deps.forEach(onDependencyUpdated => {
+        onDependencyUpdated();
+      })
     }
   })
 }
 
-function defineComputed(that, key, getFn) {
+function defineComputed(that, key, getFn, updateCallback) {
   const boundGetFn = getFn.bind(that);
+  const onDependencyUpdated = function() {
+    updateCallback(boundGetFn());
+  };
 
   Object.defineProperty(that, key, {
     enumerable: true,
     get() {
-      return boundGetFn()
+      Dep.target = onDependencyUpdated;
+      var value = boundGetFn();
+      Dep.target = null;
+      return value;
     },
     set() {
-      // Can't set a computed function
       return;
     }
   })

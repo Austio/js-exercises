@@ -77,5 +77,35 @@ describe('VueIsh', () => {
       vm.speed = 101;
       expect(vm.speedText).toBe('fast');
     })
+
+    it('only recomputes when values change', () => {
+      const spy = jest.fn();
+
+      vm = new VueIsh({
+        data: {
+          speed: 50,
+        },
+        computed: {
+          speedText() {
+            spy();
+
+            if (this.speed < 100) {
+              return 'slow';
+            }
+
+            return 'fast';
+          },
+        },
+      });
+
+      expect(vm.speedText).toBe('slow');
+      expect(vm.speedText).toBe('slow');
+
+      expect(spy.mock.calls.length).toEqual(1);
+    })
   })
+
+  describe('dependent computed properties', () => {
+
+  });
 })
